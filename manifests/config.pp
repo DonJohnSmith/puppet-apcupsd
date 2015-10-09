@@ -41,12 +41,10 @@ class apcupsd::config {
     line => "SYSADMIN=${apcupsd::maildest}",
   }
 
-  case $::osfamily {
-    'Debian': {
-      file_line { 'is_configured':
-        path => '/etc/default/apcupsd',
-        line => "ISCONFIGURED=${apcupsd::is_configured}",
-      }
+  if $::osfamily == 'Debian' {
+    file_line { 'is_configured':
+      path => '/etc/default/apcupsd',
+      line => "ISCONFIGURED=${apcupsd::is_configured}",
     }
   }
 }
