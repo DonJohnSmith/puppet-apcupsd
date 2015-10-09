@@ -1,5 +1,7 @@
 # apcupsd
 
+[![Build Status](https://travis-ci.org/grafjo/puppet-apcupsd.svg)](https://travis-ci.org/grafjo/puppet-apcupsd)
+
 #### Table of Contents
 
 1. [Overview](#overview)
