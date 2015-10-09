@@ -4,16 +4,25 @@
 
 1. [Overview](#overview)
 2. [Usage - Configuration options and additional functionality](#usage)
-3. [Limitations - OS compatibility, etc.](#limitations)
+3. [Limitations](#limitations)
 4. [Development - Guide for contributing to the module](#development)
+5. [Release Notes](#release_notes)
 
 ## Overview
 
-This module installs and configures the apcupsd UPS monitor for APC UPS units.
+This module installs and configures the [apcupsd}(http://www.apcupsd.org/) UPS monitor for APC UPS units.
+
+It's based on this [Puppet Module](https://github.com/djjudas21/puppet-apcupsd)
 
 ## Usage
 
-This module has only one class, and takes the following parameters:
+This module has only one public class.
+
+```puppet
+include ::apcupsd
+```
+
+The class takes the following parameters:
 
 ### `upsname`
 
@@ -67,10 +76,22 @@ Enables the network information server. If netstatus is on, a network informatio
 server process will be started for serving the STATUS and EVENT data over the
 network (used by CGI programs). Choose from: `on`, `off`. Default: `on`.
 
-## Limitations
+### `is_configured`
 
-This module was written for use with CentOS, although it should work on other
-distributions too.
+Only used on Debian based systems. Controlls service start via `/etc/default/apcupsd`.
+Choose from: `no`, `yes`. Default: `no`.
+
+##### `manage_service_ensure`
+Puppet service ensure - see [Type Reference](http://docs.puppetlabs.com/references/latest/type.html#service-attribute-ensure)
+
+##### `manage_service_enable`
+Puppet service enable - see [Type Reference](http://docs.puppetlabs.com/references/latest/type.html#service-attribute-enable)
+
+##### `nisip`
+IP address on which NIS server will listen for incoming connections. Default: `0.0.0.0`
+
+
+## Limitations
 
 Currently this module only supports configuring a single UPS attached to the
 local system. Future versions may support multiple UPSes on a single system or
@@ -90,3 +111,7 @@ Initial release, with support for a single UPS on a single system.
 ### `0.2.0`
 
 Added support for setting mail destination address for events scripts.
+
+### `0.3.0`
+
+Restructured and migrated to Puppet 4

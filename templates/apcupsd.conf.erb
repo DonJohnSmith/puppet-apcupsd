@@ -12,7 +12,7 @@
 #   Use this to give your UPS a name in log files and such. This
 #   is particulary useful if you have multiple UPSes. This does not
 #   set the EEPROM. It should be 8 characters or less.
-UPSNAME <%= @upsname %>
+UPSNAME <%= scope['apcupsd::upsname'] %>
 
 # UPSCABLE <cable>
 #   Defines the type of cable connecting the UPS to your computer.
@@ -26,7 +26,7 @@ UPSNAME <%= @upsname %>
 #     940-1524C, 940-0024G, 940-0095A, 940-0095B,
 #     940-0095C, M-04-02-2000
 #
-UPSCABLE <%= @upscable %>
+UPSCABLE <%= scope['apcupsd::upscable'] %>
 
 # To get apcupsd to work, in addition to defining the cable
 # above, you must also define a UPSTYPE, which corresponds to
@@ -76,8 +76,8 @@ UPSCABLE <%= @upscable %>
 #                            3052. If this parameter is empty or missing, the 
 #                            default of 3052 will be used.
 #
-UPSTYPE <%= @upstype %>
-DEVICE <%= @device %>
+UPSTYPE <%= scope['apcupsd::upstype'] %>
+DEVICE <%= scope['apcupsd::device'] %>
 
 # POLLTIME <int>
 #   Interval (in seconds) at which apcupsd polls the UPS for status. This
@@ -94,7 +94,7 @@ LOCKFILE /var/lock
 
 # SCRIPTDIR <path to script directory>
 #   Directory in which apccontrol and event scripts are located.
-SCRIPTDIR /etc/apcupsd
+SCRIPTDIR <%= scope['apcupsd::script_dir'] %>
 
 # PWRFAILDIR <path to powerfail directory>
 #   Directory in which to write the powerfail flag file. This file
@@ -122,7 +122,7 @@ NOLOGINDIR /etc
 #   ONBATTERYDELAY time.  If you don't want to be annoyed by short
 #   powerfailures, make sure that apccontrol powerout does nothing
 #   i.e. comment out the wall.
-ONBATTERYDELAY <%= @onbatterydelay %>
+ONBATTERYDELAY <%= scope['apcupsd::onbatterydelay'] %>
 
 # 
 # Note: BATTERYLEVEL, MINUTES, and TIMEOUT work in conjunction, so
@@ -132,12 +132,12 @@ ONBATTERYDELAY <%= @onbatterydelay %>
 # If during a power failure, the remaining battery percentage
 # (as reported by the UPS) is below or equal to BATTERYLEVEL, 
 # apcupsd will initiate a system shutdown.
-BATTERYLEVEL <%= @batterylevel %>
+BATTERYLEVEL <%= scope['apcupsd::batterylevel'] %>
 
 # If during a power failure, the remaining runtime in minutes 
 # (as calculated internally by the UPS) is below or equal to MINUTES,
 # apcupsd, will initiate a system shutdown.
-MINUTES <%= @minutes %>
+MINUTES <%= scope['apcupsd::minutes'] %>
 
 # If during a power failure, the UPS has run on batteries for TIMEOUT
 # many seconds or longer, apcupsd will initiate a system shutdown.
@@ -181,7 +181,7 @@ KILLDELAY 0
 #  information server. If netstatus is on, a network information
 #  server process will be started for serving the STATUS and
 #  EVENT data over the network (used by CGI programs).
-NETSERVER <%= @netserver %>
+NETSERVER <%= scope['apcupsd::netserver'] %>
 
 # NISIP <dotted notation ip address>
 #  IP address on which NIS server will listen for incoming connections.
@@ -192,7 +192,7 @@ NETSERVER <%= @netserver %>
 #  NIS will listen for connections only on that interface. Use the
 #  loopback address (127.0.0.1) to accept connections only from the
 #  local machine.
-NISIP 0.0.0.0
+NISIP <%= scope['apcupsd::nisip'] %>
 
 # NISPORT <port> default is 3551 as registered with the IANA
 #  port to use for sending STATUS and EVENTS data over the network.
