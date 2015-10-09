@@ -12,7 +12,7 @@
 #
 class apcupsd (
   String[1, 8]
-  $upsname,
+  $upsname                = $apcupsd::params::upsname,
   Enum['simple', 'smart', 'ether', 'usb']
   $upscable               = $apcupsd::params::upscable,
   Enum['apcsmart', 'usb', 'net', 'snmp', 'dumb', 'pcnet']
@@ -24,11 +24,11 @@ class apcupsd (
   Enum['on', 'off']
   $netserver              = $apcupsd::params::netserver,
   String $maildest        = $apcupsd::params::maildest,
-  String['yes', 'no']
+  Enum['yes', 'no']
   $is_configured          = $apcupsd::params::is_configured,
   String $manage_service_ensure  = $apcupsd::params::manage_service_ensure,
   Boolean $manage_service_enable = $apcupsd::params::manage_service_enable,
-  String $nisip = $apcupsd::paramas::nisip,
+  String $nisip = $apcupsd::params::nisip,
 ) inherits apcupsd::params {
 
   class {'apcupsd::install': } ->

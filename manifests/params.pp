@@ -30,6 +30,7 @@ class apcupsd::params {
     }
   }
 
+  $upsname = 'apc'
 
   $manage_service_ensure = 'stopped'
 
@@ -45,7 +46,7 @@ class apcupsd::params {
 
   $upstype = 'usb'
 
-  $device = undef
+  $device = '' 
 
   $onbatterydelay = 6
 

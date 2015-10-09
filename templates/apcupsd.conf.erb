@@ -94,7 +94,7 @@ LOCKFILE /var/lock
 
 # SCRIPTDIR <path to script directory>
 #   Directory in which apccontrol and event scripts are located.
-SCRIPTDIR <%= scope['apcupsd::script_dir'] %>
+SCRIPTDIR <%= scope['apcupsd::scriptdir'] %>
 
 # PWRFAILDIR <path to powerfail directory>
 #   Directory in which to write the powerfail flag file. This file
