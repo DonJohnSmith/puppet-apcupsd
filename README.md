@@ -12,7 +12,7 @@
 
 ## Overview
 
-This module installs and configures the [apcupsd}(http://www.apcupsd.org/) UPS monitor for APC UPS units.
+This module installs and configures the [apcupsd](http://www.apcupsd.org/) UPS monitor for APC UPS units.
 
 It's based on this [Puppet Module](https://github.com/djjudas21/puppet-apcupsd)
 
@@ -83,13 +83,13 @@ network (used by CGI programs). Choose from: `on`, `off`. Default: `on`.
 Only used on Debian based systems. Controlls service start via `/etc/default/apcupsd`.
 Choose from: `no`, `yes`. Default: `no`.
 
-##### `manage_service_ensure`
+### `manage_service_ensure`
 Puppet service ensure - see [Type Reference](http://docs.puppetlabs.com/references/latest/type.html#service-attribute-ensure)
 
-##### `manage_service_enable`
+### `manage_service_enable`
 Puppet service enable - see [Type Reference](http://docs.puppetlabs.com/references/latest/type.html#service-attribute-enable)
 
-##### `nisip`
+### `nisip`
 IP address on which NIS server will listen for incoming connections. Default: `0.0.0.0`
 
 
