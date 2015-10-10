@@ -46,7 +46,7 @@ class apcupsd::params {
 
   $upstype = 'usb'
 
-  $device = '' 
+  $device = ''
 
   $onbatterydelay = 6
 
