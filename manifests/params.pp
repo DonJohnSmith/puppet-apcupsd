@@ -30,15 +30,17 @@ class apcupsd::params {
     }
   }
 
+  $package_version = 'latest'
+
   $upsname = 'apc'
 
-  $manage_service_ensure = 'stopped'
+  $manage_service_ensure = 'running'
 
   $manage_service_enable = true
 
   $maildest = 'root'
 
-  $is_configured = 'no'
+  $is_configured = 'yes'
 
   $nisip = '0.0.0.0'
 
@@ -54,6 +56,5 @@ class apcupsd::params {
 
   $minutes = 3
 
-  $netserver = 'on'
+  $netserver = 'off'
 }
-

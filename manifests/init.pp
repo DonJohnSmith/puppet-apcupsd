@@ -29,6 +29,7 @@ class apcupsd (
   String $manage_service_ensure  = $apcupsd::params::manage_service_ensure,
   Boolean $manage_service_enable = $apcupsd::params::manage_service_enable,
   String $nisip = $apcupsd::params::nisip,
+  Enum['single', 'double'] $ups_mode = $apcupsd::params::ups_mode,
 ) inherits apcupsd::params {
 
   class {'apcupsd::install': } ->
@@ -36,4 +37,3 @@ class apcupsd (
   class {'apcupsd::service': } ->
   Class['apcupsd']
 }
-

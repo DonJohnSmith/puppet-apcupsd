@@ -11,35 +11,24 @@
 class apcupsd::config {
 
   # configuration
-  file {$apcupsd::config:
-    content => template('apcupsd/apcupsd.conf.erb'),
+  if $apcupsd::ups_mode == 'single' {
+    $ups_nr = ''
+    file {$apcupsd::config:
+      content => template('apcupsd/apcupsd.conf.erb'),
+    }
   }
 
-  # script
-  file_line { 'changeme':
-    path => "${apcupsd::scriptdir}/changeme",
-    line => "SYSADMIN=${apcupsd::maildest}",
-  }
+  elsif $apcupsd::ups_mode == 'double' {
+    file {'/etc/apcupsd/apcupsd.conf':
+      ensure => absent,
+    }
 
-  file_line { 'commfailure':
-    path => "${apcupsd::scriptdir}/commfailure",
-    line => "SYSADMIN=${apcupsd::maildest}",
-  }
+    ['0', '1'].each | $ups_nr | {
+      file {"/etc/apcupsd/apcupsd${ups_nr}.conf":
+        content => template('apcupsd/apcupsd.conf.erb'),
+      }
 
-  file_line { 'commok':
-    path => "${apcupsd::scriptdir}/commok",
-    line => "SYSADMIN=${apcupsd::maildest}",
-  }
-
-  file_line { 'offbattery':
-    path => "${apcupsd::scriptdir}/offbattery",
-    line => "SYSADMIN=${apcupsd::maildest}",
-  }
-
-  file_line { 'onbattery':
-    path => "${apcupsd::scriptdir}/onbattery",
-    line => "SYSADMIN=${apcupsd::maildest}",
-  }
+    }
 
   if $::osfamily == 'Debian' {
     file_line { 'is_configured':
@@ -48,4 +37,3 @@ class apcupsd::config {
     }
   }
 }
-
